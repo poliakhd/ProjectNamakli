@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  api:
+    build: ./src
+    networks:
+      - api
+
+  nginx:
+    build: ./nginx
+    container_name: api.local
+    ports:
+      - "80:80" 
+    depends_on:
+      - api
+    networks:
+      - api
+
+networks:
+  api:
